@@ -39,8 +39,12 @@ Route::get('/', function () {
 //辨別role，跳轉至各個使用者頁面
 Route::get('/redirects',[HomeController::class,'index'])->name('index');
 
-
-
+//平台人員
+Route::prefix('poster')->name('poster.')->group(function () {
+    Route::get('/meals',[MealController::class,'index'])->name('meals.index');//餐點列表
+    Route::get('/meals/create', [MealController::class, 'create'])->name('meals.create');//新增餐點頁面
+    Route::post('/meals', [MealController::class, 'store'])->name('meals.store');//儲存餐點資料
+});
 
 
 Route::resource('categories', CategoryController::class);

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
             $table->string('name');
             $table->integer('price');
-            $table->string('pic');
+            $table->longText('image')->nullable();
             $table->timestamps();
 
 
