@@ -78,7 +78,7 @@ Route::prefix('orders')->name('orders.')->group(function () {
     Route::get('/orders',[OrderController::class,'index'])->name('orders.index');//將頁面轉至顧客點單的首頁
     Route::get('/orders/create/{order}', [OrderController::class, 'create'])->name('orders.create');//轉到結帳頁面
     Route::post('/orders/{order}', [OrderController::class, 'store'])->name('orders.store');//存客戶結帳資訊
-    Route::delete('/orders/{order}',[OrderController::class,'destroy'])->name('orders.destroy');//刪除訂單資料
+    Route::delete('/orders/{order}',[OrderController::class,'destroy'])->name('orders.destroy');
     Route::get('/orders/{order}/show', [OrderController::class, 'show'])->name('orders.show');//呈現顧客此訂單的訂單明細
     Route::get('/orders/{order}/edit',[OrderController::class,'edit'])->name('orders.edit');
     Route::patch('/orders/{order}',[OrderController::class,'update'])->name('orders.update');
