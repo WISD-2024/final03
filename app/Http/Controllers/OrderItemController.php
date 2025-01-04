@@ -34,8 +34,13 @@ class OrderItemController extends Controller
     //儲存訂單明細資料
     public function store(Request $request,Meal $meal)
     {
+        //之後要加入middelware功能
+        if(Auth::user()==null){
+            return view('auth.login');
+        }
         //取得使用者此筆訂單資訊
         $order = Auth::user()->order()->orderby('id', 'DESC')->first();
+
 
         //關聯餐點及訂單到order_item表內
         $meal->order()->attach($order->id, ['quantity' => $request['quantity'], 'status' => 0]);
@@ -47,52 +52,39 @@ class OrderItemController extends Controller
         return view('orderitems.create',$data);
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(OrderItem $orderItem)
     {
-        //
+       //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    //編輯訂單明細頁面
     public function edit(OrderItem $orderItem)
-    $data=['orderItem'=>$orderItem];
+    {
+        $data=['orderItem'=>$orderItem];
 
-    return view('orderitems.edit',$data);
- }
-
- //更改訂單明細數量
- public function update(Request $request, OrderItem $orderItem)
- {
-
-   
-     $data=['orderItem'=>$orderItem];
-
-        return view('orderitems.edit',$data);
-     }
- 
-     //更改訂單明細數量
-         
-        public function update(Request $request, OrderItem $orderItem)//更新訂單明細數量
-        {     $orderItem->update([
-                'quantity'=>$request['quantity'],
-            ]);
-    
-            //取得顧客此筆訂單資料
-            $order=Auth::user()->order()->orderby('id','DESC')->first();
-    
-            //$order內容存入order矩陣
-            $data=['order'=>$order];
-    
-            //返回顧客此筆訂單明細的頁面
-            return view('orders.show',$data);
-        }
+       return view('orderitems.edit',$data);
     }
 
-    
+    //更改訂單明細數量
+    public function update(Request $request, OrderItem $orderItem)
+    {
+        //更新訂單明細數量
+        $orderItem->update([
+            'quantity'=>$request['quantity'],
+        ]);
+
+        //取得顧客此筆訂單資料
+        $order=Auth::user()->order()->orderby('id','DESC')->first();
+
+        //$order內容存入order矩陣
+        $data=['order'=>$order];
+
+        //返回顧客此筆訂單明細的頁面
+        return view('orders.show',$data);
+    }
+
+    //刪除訂單明細資料
     public function destroy(OrderItem $orderItem)
     {
         OrderItem::destroy($orderItem->id);

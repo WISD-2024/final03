@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Meal;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
@@ -19,6 +20,7 @@ class OrderController extends Controller
      *
      * @return// \Illuminate\Http\Response
      */
+
     //初始化顧客訂單
     public function init(){
 
@@ -30,16 +32,21 @@ class OrderController extends Controller
         return  redirect()->route('orders.orders.index');
 
     }
+
+    //將頁面轉至顧客點單的首頁
     public function index()
     {
         $meals = Meal::orderBy('id','DESC')->get();//取得資料庫中的欄位值，以陣列的方式
+        $categories=Category::orderBy('id','DESC')->get();
         $data=[
-            'meals'=>$meals
+            'meals'=>$meals,
+            'categories'=>$categories
         ];
 
         //把資料呈現到顧客點餐的首頁
         return view('index',$data);
     }
+
     //管理者查看餐點
     public function staffindex()
     {
@@ -51,8 +58,6 @@ class OrderController extends Controller
         return view('staff.orders.index',$data);
     }
 
-     
-
     //轉到結帳頁面
     public function create(Order $order)
     {
@@ -63,7 +68,8 @@ class OrderController extends Controller
             $price=$i->meal->price;
             $pertotal=$quantity*$price;
             $tatol=$tatol+$pertotal;
-    }
+        }
+
         //先存入此筆訂單的總金額，才能顯示在結帳頁面上
         $order->update(['total'=> $tatol]);
 
@@ -71,8 +77,9 @@ class OrderController extends Controller
 
         return view('orders.create',$data);
     }
+
     //存客戶結帳資訊
-    public function store(StoreOrderRequest $request)
+    public function store(Request $request,Order $order)
     {
         //取得現在下定完成時間
         $now =Carbon::now();
@@ -97,7 +104,6 @@ class OrderController extends Controller
     {
         //
     }
-
 
     public function update(UpdateOrderRequest $request, Order $order)
     {

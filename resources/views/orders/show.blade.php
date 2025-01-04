@@ -30,10 +30,12 @@
                                     <h5 class="modal-title">重新點餐</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="{{route('orders.orders.init')}}" >
-
+                                <form action="{{route('orders.orders.destroy',$order->id)}}" method="post" >
+                                    @method('delete')
+                                    <!--csrf驗證機制，產生隱藏的input，包含一組驗證密碼-->
+                                    @csrf
                                     <div class="modal-body">
-                                        <p>確定要重新點單嗎?</p>
+                                        <p>確定要刪除 {{$order->id}} 嗎?</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">取消</button>
