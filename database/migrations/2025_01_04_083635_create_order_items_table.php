@@ -8,14 +8,16 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('order_id');
+            $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders');
-            $table->unsignedInteger('meal_id');
+            $table->unsignedBigInteger('meal_id')->nullable();
             $table->foreign('meal_id')->references('id')->on('meals');
             $table->integer('quantity');
             $table->integer('status');
@@ -26,8 +28,10 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('order_items');
     }
