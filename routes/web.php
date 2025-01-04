@@ -33,6 +33,7 @@ Route::middleware([
 
 //首頁
 Route::get('/',[HomeController::class,'home'])->name('home');
+Route::get('/sid/{category}',[HomeController::class,'sid'])->name('sid');//按照分類顯示在index上
 
 //辨別role，跳轉至各個使用者首面(0->user,1->poster,2->staff)
 Route::get('/redirects',[HomeController::class,'index'])->name('index');

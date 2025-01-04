@@ -171,7 +171,7 @@ class MealController extends Controller
         //刪除指定檔案
         $disk->delete($meal->image);
         //刪除meals的資料
-        Meal::destroy($meal->id);
+        $meal->delete();
         return redirect()->route('poster.meals.index');
     }
 }
