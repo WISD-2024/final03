@@ -4,7 +4,6 @@
 
 @section('page-content')
 
-    @if($meals->isNotEmpty())<!--搜尋到相關資料-->
     <!--內容-->
     <div class=" px-lg-5" id="nav-tabContent">
         <!--陣列內有幾筆資料就會重複執行幾次-->
@@ -21,19 +20,16 @@
                                     <div class="card-body text-center p-lg-5  pt-lg-0 pt-5">
                                         <h2 class="fs-4 fw-bold pt-5">{{$meal->name}}</h2>
                                         <p class="mb-0">價格：{{$meal->price}}</p>
-                                        <a href="{{route('order.OrderItem.create',$meal)}}" class="stretched-link"></a><!--點擊頁籤-->
+                                        <a href="" class="btn btn-secondary fs justify-content-md-end-5 position-end " >立即訂購</a>
+                                        <a href="" class="stretched-link"></a><!--點擊頁籤-->
                                     </div>
                                 </div>
                             </div>
                         @endforeach
-                        
                     </div>
                 </div>
             </section>
         </div>
-        @else<!--無搜尋到相關資料-->
-            <div class="position-absolute top-50 start-50 translate-middle">
-                <h2>查無資料，請重新查詢.</h2>
-            </div>
-    @endif
+
 @endsection
+        index.blade.php

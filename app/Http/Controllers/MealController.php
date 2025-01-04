@@ -28,6 +28,16 @@ class MealController extends Controller
         return view('poster.meals.index',$data);
     }
 
+    //搜尋功能
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $meals = Meal::query()->where('name', 'LIKE', "%{$search}%")->get();
+        $categories=Category::orderBy('id','DESC')->get();//sidenav顯示類別
+          $data=['meals'=>$meals,'categories'=>$categories];//index的sib需要類別的資料，記得給分類的資料
+          return view('index',$data);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -171,7 +181,7 @@ class MealController extends Controller
         //刪除指定檔案
         $disk->delete($meal->image);
         //刪除meals的資料
-        Meal::destroy($meal->id);
+        $meal->delete();
         return redirect()->route('poster.meals.index');
     }
 }

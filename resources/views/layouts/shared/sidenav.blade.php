@@ -2,18 +2,14 @@
     <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-                <a class="nav-link" href="{{route('poster.meals.index')}}">
+                @foreach($categories as $category)
+                <a class="nav-link" href="{{route('sid',$category->id)}}"><!--抓取目前點選的category找出相關meals-->
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
-                    餐點管理
+                    {{$category->name}}
                 </a>
-                <a class="nav-link" href="{{route('poster.categories.index') }}">
-                    <div class="sb-nav-link-icon">
-                        <i class="fas fa-tachometer-alt"></i>
-                    </div>
-                    類別管理
-                </a>
+                @endforeach
             </div>
         </div>
 
