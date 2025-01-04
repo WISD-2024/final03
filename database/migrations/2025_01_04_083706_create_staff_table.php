@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('staff', function (Blueprint $table) {
             $table->id();//編號
             $table->string('name');//姓名
-            $table->string('email')->unique();//email
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('account',20);//帳號
             $table->string('password');//密碼
             $table->timestamps();
         });
