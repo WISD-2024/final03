@@ -1,6 +1,6 @@
 <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="{{route('home')}}">快炒點餐</a>
+    <a class="navbar-brand ps-3" href="{{route('home')}}">比薩點餐</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
             class="fas fa-bars"></i></button>
@@ -13,7 +13,7 @@
     </form>
 
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
