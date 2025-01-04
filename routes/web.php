@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
@@ -20,11 +21,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//首頁
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -35,18 +31,15 @@ Route::middleware([
     })->name('dashboard');
 });
 
-//平台人員
-Route::prefix('poster')->name('poster.')->group(function () {
-Route::get('/index',[PosterController::class,'index'])->name('index');//主控台
-//Route::post('/logout',[PosterController::class,'logout'])->name('logout');//登出
-
+//首頁
+Route::get('/', function () {
+    return view('welcome');
 });
 
-Route::prefix('meals')->name('meals.')->group(function () {
-    Route::get('/index',[MealController::class,'index'])->name('index');//餐點管理列表
+//辨別role，跳轉至各個使用者頁面
+Route::get('/redirects',[HomeController::class,'index'])->name('index');
 
 
-});
 
 
 

@@ -16,7 +16,7 @@ class PosterController extends Controller
     //平台人員首頁
     public function index()
     {
-        return view('poster.dashboard.index');
+
     }
 
 
