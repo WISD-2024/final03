@@ -36,7 +36,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//辨別role，跳轉至各個使用者頁面
+//辨別role，跳轉至各個使用者首面(0->user,1->poster,2->staff)
 Route::get('/redirects',[HomeController::class,'index'])->name('index');
 
 //平台人員
@@ -51,6 +51,13 @@ Route::prefix('poster')->name('poster.')->group(function () {
 
 });
 
+//內場人員
+Route::prefix('staff')->name('staff.')->group(function () {
+    Route::get('/orders',[OrderController::class,'index'])->name('orders.index');//訂單列表
+
+
+});
+
 
 Route::resource('categories', CategoryController::class);
 Route::resource('customers', CustomerController::class);
@@ -58,4 +65,3 @@ Route::resource('meals', MealController::class);
 Route::resource('orders', OrderController::class);
 Route::resource('orderitems', OrderItemController::class);
 
-Route::resource('staffs', StaffController::class);
