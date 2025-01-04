@@ -44,6 +44,8 @@ Route::prefix('poster')->name('poster.')->group(function () {
     Route::get('/meals',[MealController::class,'index'])->name('meals.index');//餐點列表
     Route::get('/meals/create', [MealController::class, 'create'])->name('meals.create');//新增餐點頁面
     Route::post('/meals', [MealController::class, 'store'])->name('meals.store');//儲存餐點資料
+    Route::delete('/meals/{meal}',[MealController::class,'destroy'])->name('meals.destroy');//刪除餐點資料
+    Route::get('/meals/{meal}/show', [MealController::class, 'show'])->name('meals.show');//
 
 });
 

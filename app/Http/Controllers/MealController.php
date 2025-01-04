@@ -74,7 +74,9 @@ class MealController extends Controller
             'price'=>$request->price,
             'image'=>$imageName,
         ]);
-        return view('poster.meals.index');
+
+        //回到傳送資料來的頁面
+        return redirect()->route('poster.meals.index');
     }
 
     /**
@@ -83,9 +85,13 @@ class MealController extends Controller
      * @param  \App\Models\Meal  $meal
      * @return \Illuminate\Http\Response
      */
-    public function show(Meal $meal)
-    {
-        //
+    public function show(Meal $meal){
+        $categories=Category::where('id','=',$meal->category_id)->get();
+        $data=[
+            'meal'=>$meal,
+            'categories'=>$categories,
+        ];
+        return view('poster.meals.show',$data);
     }
 
     /**
@@ -117,8 +123,14 @@ class MealController extends Controller
      * @param  \App\Models\Meal  $meal
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(Meal $meal)
     {
-
+        //抓出public/images裡的圖片
+        $disk=Storage::disk('images');
+        //刪除指定檔案
+        $disk->delete($meal->image);
+        //刪除meal資料
+        Meal::destroy($meal->id);
+        return redirect()->route('poster.meals.index');
     }
 }
