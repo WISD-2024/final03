@@ -11,11 +11,9 @@ class Category extends Model
     protected $fillable =[
     'id',
     'name',
-    'account',
-    'password'
 ];
     #一個類別擁有多個餐點(一對多)
-    public function meal(){
-        return $this->hasMany(Meal::class);
+    public function meals(){
+        return $this->hasMany(Category::class);
     }
 }

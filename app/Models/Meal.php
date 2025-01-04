@@ -23,10 +23,11 @@ class Meal extends Model
     {
         return $this->belongsToMany(Customer::class);
     }
-    #多個餐點屬於某一個類別(多對一)
+    #一個餐點只會屬於一個類別
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
     #一個餐點包含在多個訂單明細中(一對多)
     public function orderitem(){
         return $this->hasMany(OrderItem::class);

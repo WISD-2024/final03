@@ -14,12 +14,12 @@
                     <div class="row gx-lg-5  px-lg-5">
                         @foreach($meals as $meal)
                             <div class="col-lg-6 col-xxl-4 mb-5 pt-5">
-                                <div class="card bg-light border-0 h-100">
+                                <div class="card bg-light border-0 h-100 ">
                                     <!--圖片-->
                                     <img src="{{asset('images/'.$meal->image)}}">
-                                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0 ">
-                                        <h2 class="fs-4 fw-bold">{{$meal->name}}</h2>
-                                        <p class="mb-0">{{$meal->price}}</p>
+                                    <div class="card-body text-center p-lg-5  pt-lg-0 pt-5">
+                                        <h2 class="fs-4 fw-bold pt-5">{{$meal->name}}</h2>
+                                        <p class="mb-0">價格：{{$meal->price}}</p>
                                         <a href="" class="stretched-link"></a><!--點擊頁籤-->
                                     </div>
                                 </div>
