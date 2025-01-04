@@ -4,6 +4,7 @@
 
 @section('page-content')
 
+    @if($meals->isNotEmpty())<!--搜尋到相關資料-->
     <!--內容-->
     <div class=" px-lg-5" id="nav-tabContent">
         <!--陣列內有幾筆資料就會重複執行幾次-->
@@ -29,5 +30,9 @@
                 </div>
             </section>
         </div>
-
+        @else<!--無搜尋到相關資料-->
+            <div class="position-absolute top-50 start-50 translate-middle">
+                <h2>查無資料，請重新查詢.</h2>
+            </div>
+    @endif
 @endsection

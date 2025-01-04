@@ -5,8 +5,10 @@
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
             class="fas fa-bars"></i></button>
     <!-- Navbar Search-->
-    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0 " action="{{route('search')}}" method="get">
         <div class="input-group">
+            <input type="text" class="input-text" style="width:250px" placeholder="輸入餐點名稱"  name="search" id="search">
+            <button type="submit" class="btn btn-success">搜尋</button>
         </div>
     </form>
 
