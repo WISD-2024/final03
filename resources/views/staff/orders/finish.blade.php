@@ -13,6 +13,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">完成時間</th>
+                <th scope="col">顧客</th>
                 <th scope="col">功能</th>
             </tr>
             </thead>
@@ -22,6 +23,7 @@
             <tr>
                 <th scope="row" style="width: 50px">{{$order->id}}</th>
                 <td>{{$order->starttime}}</td>
+                <td>{{$order->user->name}}</td>
                 <td style="width: 150px">
 
                     <a href="{{route('staff.orders.show',$order->id)}}" class="btn btn-primary btn-sm">詳細資料</a>
