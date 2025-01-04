@@ -46,10 +46,11 @@
                                 <!--標題-->
                                 <div class="modal-header">
                                     <h5 class="modal-title">刪除餐點</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                     <div class="modal-body">
                                         <p>確定要刪除 {{$meal->name}} 嗎?</p>
+                                        <p>訂單明細相關之餐點也會被刪除!!</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">取消</button>

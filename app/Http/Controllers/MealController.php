@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Meal;
+use App\Models\OrderItem;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreMealRequest;
@@ -176,12 +177,15 @@ class MealController extends Controller
      */
     public function destroy(Meal $meal)
     {
-        //抓出public/images裡的圖片
-        $disk=Storage::disk('images');
-        //刪除指定檔案
-        $disk->delete($meal->image);
-        //刪除meals的資料
-        $meal->delete();
+
+        $disk=Storage::disk('images');//抓出public/images裡的圖片
+        $orderItem=OrderItem::where('meal_id','=',$meal->id)->get();//找出有和此meal關聯的orderitem
+
+        OrderItem::destroy($orderItem);//刪除有關連的orderitem
+        $disk->delete($meal->image);//刪除指定檔案
+        $meal->delete(); //刪除meals的資料
+
         return redirect()->route('poster.meals.index');
     }
 }
+
