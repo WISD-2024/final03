@@ -51,7 +51,7 @@ Route::prefix('poster')->name('poster.')->group(function () {
 
 //內場人員
 Route::prefix('staff')->name('staff.')->group(function () {
-    Route::get('/orders',[OrderController::class,'index'])->name('orders.index');//訂單列表
+    Route::get('/orders',[OrderController::class,'staffindex'])->name('orders.index');//訂單列表
 
 
 });
@@ -60,6 +60,28 @@ Route::prefix('staff')->name('staff.')->group(function () {
 Route::resource('categories', CategoryController::class);
 Route::resource('customers', CustomerController::class);
 Route::resource('meals', MealController::class);
-Route::resource('orders', OrderController::class);
-Route::resource('orderitems', OrderItemController::class);
 
+//顧客訂單
+Route::prefix('orders')->name('orders.')->group(function () {
+    Route::get('/init',[OrderController::class,'init'])->name('orders.init');//初始化顧客訂單
+    Route::get('/orders',[OrderController::class,'index'])->name('orders.index');//將頁面轉至顧客點單的首頁
+    Route::get('/orders/create/{order}', [OrderController::class, 'create'])->name('orders.create');//轉到結帳頁面
+    Route::post('/orders/{order}', [OrderController::class, 'store'])->name('orders.store');//存客戶結帳資訊
+    Route::delete('/orders/{order}',[OrderController::class,'destroy'])->name('orders.destroy');//刪除訂單資料
+    Route::get('/orders/{order}/show', [OrderController::class, 'show'])->name('orders.show');//呈現顧客此訂單的訂單明細
+    Route::get('/orders/{order}/edit',[OrderController::class,'edit'])->name('orders.edit');
+    Route::patch('/orders/{order}',[OrderController::class,'update'])->name('orders.update');
+
+});
+
+//顧客訂單明細
+Route::prefix('OrderItem')->name('order.')->group(function () {
+    Route::get('/OrderItem',[OrderItemController::class,'index'])->name('OrderItem.index');//抓顧客此筆訂單資訊
+    Route::get('/OrderItem/create/{meal}', [OrderItemController::class, 'create'])->name('OrderItem.create');//新增訂單明細頁面
+    Route::post('/OrderItem/{meal}', [OrderItemController::class, 'store'])->name('OrderItem.store');//儲存訂單明細資料
+    Route::delete('/OrderItem/{orderItem}',[OrderItemController::class,'destroy'])->name('OrderItem.destroy');//刪除訂單明細資料
+    Route::get('/OrderItem/show', [OrderItemController::class, 'show'])->name('OrderItem.show');
+    Route::get('/OrderItem/{orderItem}/edit',[OrderItemController::class,'edit'])->name('OrderItem.edit');//編輯訂單明細頁面
+    Route::patch('/OrderItem/{orderItem}',[OrderItemController::class,'update'])->name('OrderItem.update');//更改訂單明細數量
+
+});

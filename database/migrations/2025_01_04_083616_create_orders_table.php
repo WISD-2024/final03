@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('pay');
-            $table->dateTime('starttime');
+            $table->dateTime('starttime')->nullable();
             $table->string('total');
             $table->integer('way');
             $table->integer('status');

@@ -13,6 +13,8 @@
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
                         <a href="{{ url('/dashboard') }}" class="tbadge bg-light text-dark ">Dashboard</a>
+                        <a href="{{route('order.OrderItem.index')}}" class="tbadge bg-light text-dark ">我的訂單</a>
+
                     @else
                         <a href="{{ route('login') }}" class="badge bg-light text-dark ">Log in</a>
 

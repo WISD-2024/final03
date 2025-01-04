@@ -20,11 +20,12 @@
                                     <div class="card-body text-center p-lg-5  pt-lg-0 pt-5">
                                         <h2 class="fs-4 fw-bold pt-5">{{$meal->name}}</h2>
                                         <p class="mb-0">價格：{{$meal->price}}</p>
-                                        <a href="" class="stretched-link"></a><!--點擊頁籤-->
+                                        <a href="{{route('order.OrderItem.create',$meal)}}" class="stretched-link"></a><!--點擊頁籤-->
                                     </div>
                                 </div>
                             </div>
                         @endforeach
+                        
                     </div>
                 </div>
             </section>

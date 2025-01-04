@@ -32,4 +32,16 @@ class Meal extends Model
     public function orderitem(){
         return $this->hasMany(OrderItem::class);
     }
+    
+    public function order()
+    {
+        return $this->belongsToMany(Order::class,'order_items')
+            ->withPivot(
+                'id',
+                'quantity',
+                'status',
+                'endtime',
+            )
+            ->withTimestamps();
+    }
 }

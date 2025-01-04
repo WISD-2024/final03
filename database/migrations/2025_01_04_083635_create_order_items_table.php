@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign('meal_id')->references('id')->on('meals');
             $table->integer('quantity');
             $table->integer('status');
-            $table->dateTime('endtime');
+            $table->dateTime('endtime')->nullable();
             $table->timestamps();
         });
     }
