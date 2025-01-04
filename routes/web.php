@@ -48,7 +48,14 @@ Route::prefix('poster')->name('poster.')->group(function () {
     Route::get('/meals/{meal}/show', [MealController::class, 'show'])->name('meals.show');//餐點詳情頁面
     Route::get('/meals/{meal}/edit',[MealController::class,'edit'])->name('meals.edit');//編輯餐點頁面
     Route::patch('/meals/{meal}',[MealController::class,'update'])->name('meals.update');//更新餐點資料
-
+    
+    Route::get('/categories',[CategoryController::class,'index'])->name('categories.index');//類別列表
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');//新增類別頁面
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');//儲存類別資料
+    Route::get('/categories/{category}/edit',[CategoryController::class,'edit'])->name('categories.edit');//編輯類別頁面
+    Route::patch('/categories/{category}',[CategoryController::class,'update'])->name('categories.update');//更新類別資料
+    Route::get('/categories/{category}/show', [CategoryController::class, 'show'])->name('categories.show');//餐點詳情頁面
+Route::delete('/categories/{category}',[CategoryController::class,'destroy'])->name('categories.destroy');//刪除餐點資料
 });
 
 //內場人員
