@@ -32,9 +32,7 @@ Route::middleware([
 });
 
 //首頁
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[HomeController::class,'home'])->name('home');
 
 //辨別role，跳轉至各個使用者首面(0->user,1->poster,2->staff)
 Route::get('/redirects',[HomeController::class,'index'])->name('index');
