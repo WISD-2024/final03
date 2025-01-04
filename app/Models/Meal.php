@@ -15,7 +15,7 @@ class Meal extends Model
         'category_id',
         'name',
         'price',
-        'pic',
+        'image',
     ];
 
     #多個餐點可被多個顧客選購(多對多)

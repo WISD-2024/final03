@@ -7,6 +7,7 @@ use App\Models\Meal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreMealRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -58,10 +59,12 @@ class MealController extends Controller
 
         //確認有檔案的話儲存到資料夾
         if ($request->hasFile('image')) {
+            echo 'UUU';
             //自訂檔案名稱
             $imageName = time().'.'.$request->file('image')->extension();
-            //把檔案存到專案的public/images資料夾裡
+            //把檔案存到公開的資料夾
             $request->file('image')->move(public_path('/images'), $imageName);
+
         }
 
         //儲存至DB
@@ -114,8 +117,8 @@ class MealController extends Controller
      * @param  \App\Models\Meal  $meal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Meal $meal)
+    public function destroy()
     {
-        //
+
     }
 }

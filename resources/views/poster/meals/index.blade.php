@@ -21,10 +21,10 @@
             </thead>
 
             <tbody>
-            @foreach($meals as $meal)<!--陣列內有幾筆資料就會重複執行幾次-->
+{{--            @foreach($meals as $meal)<!--陣列內有幾筆資料就會重複執行幾次-->--}}
             <tr>
-                <th scope="row" style="width: 50px">{{$meal->id}}</th>
-                <td>{{$meal->name}}</td>
+                <th scope="row" style="width: 50px"></th>
+                <td></td>
                 <td style="width: 150px">
 
                     <a href="" class="btn btn-primary btn-sm">詳細資料</a>
@@ -36,7 +36,7 @@
 
                 </td>
             </tr>
-            @endforeach
+{{--            @endforeach--}}
             </tbody>
 
         </table>

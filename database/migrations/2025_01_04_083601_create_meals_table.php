@@ -17,12 +17,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->string('name');
-            $table->integer('price');
-            $table->longText('image')->nullable();
+            $table->string('name');//餐點名稱
+            $table->integer('price');//價格
+            $table->string('image',100);//圖片
             $table->timestamps();
-
-
         });
     }
 
