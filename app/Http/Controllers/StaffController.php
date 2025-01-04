@@ -125,16 +125,13 @@ class StaffController extends Controller
 
     public function itemstatus(OrderItem $orderItem)
     {
-        $orderItem->update([
-            'status'=>1,
-        ]);
         $order=$orderItem->order->id;
+        $orderItem->update(['status'=>1]);
+        $order_status=$orderItem->order->status;
+        $order_way=$orderItem->order->way;
+        $order_total=$orderItem->order->total;
+
         $orderItems=OrderItem::where('order_id','=',$order)->get();
-        $order_status=$orderItems->order->status;
-        $order_way=$orderItems->order->way;
-        $order_total=$orderItems->order->total;
-
-
 
         $data=[
             'orderItems'=>$orderItems,

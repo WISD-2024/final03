@@ -25,9 +25,9 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'poster',
-            'email' => 'poster@gmail.com',
-            'role' =>'1',
+            'name' => fake()->name(),//姓名
+            'email' => fake()->unique()->email(),
+            'role' =>'0',
             'email_verified_at' => now(),
             'password' => '$2y$10$YSjl9Kz5PLLVTodhHLnU6OE.9/7VJ0z0X60nKY82uAlKNGzTS5/xe', // password:00000000
             'remember_token' => Str::random(10),
