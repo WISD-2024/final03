@@ -48,15 +48,15 @@ class OrderController extends Controller
     }
 
     //管理者查看餐點
-    public function staffindex()
-    {
-        $orders = Order::orderBy('id','DESC')->get();//取得資料庫中的欄位值，以陣列的方式
-        $data=[
-            'orders'=>$orders
-        ];
-
-        return view('staff.orders.index',$data);
-    }
+//    public function staffindex()
+//    {
+//        $orders = Order::orderBy('id','DESC')->get();//取得資料庫中的欄位值，以陣列的方式
+//        $data=[
+//            'orders'=>$orders
+//        ];
+//
+//        return view('staff.orders.index',$data);
+//    }
 
     //轉到結帳頁面
     public function create(Order $order)

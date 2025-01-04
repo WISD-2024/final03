@@ -8,11 +8,11 @@
                     </div>
                     訂單管理
                 </a>
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{route('staff.orders.finish')}}">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
-                   ??
+                   歷史訂單
                 </a>
             </div>
         </div>

@@ -32,11 +32,9 @@
 
 
 
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@123">刪除</button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#meal{{$meal->id}}" data-bs-whatever="@123">刪除</button>
                     <div class="modal fade" id="meal{{$meal->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
                         <form action="{{route('poster.meals.destroy',$meal->id)}}" method="post" >
                             @method('delete')
                             <!--csrf驗證機制，產生隱藏的input，包含一組驗證密碼-->

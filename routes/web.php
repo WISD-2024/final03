@@ -59,9 +59,12 @@ Route::prefix('poster')->name('poster.')->group(function () {
 });
 //內場人員
 Route::prefix('staff')->name('staff.')->group(function () {
-    Route::get('/orders',[OrderController::class,'staffindex'])->name('orders.index');//訂單列表
-
-
+    Route::get('/orders',[StaffController::class,'index'])->name('orders.index');//訂單列表
+    Route::get('/orders/{order}/show',[StaffController::class,'show'])->name('orders.show');//訂單詳細
+    Route::patch('/orderItems/{orderItem}',[StaffController::class,'itemstatus'])->name('itemstatus.update');//餐點完成按鈕
+    Route::get('/orders/finish',[StaffController::class,'finish'])->name('orders.finish');//歷史訂單列表
+    Route::patch('/orders/{order}',[StaffController::class,'orderstatus'])->name('orderstatus.update');//已完成訂單按鈕
+    Route::delete('/orders/{order}',[StaffController::class,'destroy'])->name('orders.destroy');//刪除餐點資料
 });
 
 
