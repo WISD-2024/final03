@@ -16,4 +16,11 @@ class Order extends Model
         'way',
         'status',
     ];
+
+    #訂單及顧客之間的關係(一對一)
+
+    #一個訂單包含多個訂單明細(一對多)
+    public function orderitem(){
+        return $this->hasMany(OrderItem::class);
+    }
 }
