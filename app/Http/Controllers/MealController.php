@@ -59,12 +59,10 @@ class MealController extends Controller
 
         //確認有檔案的話儲存到資料夾
         if ($request->hasFile('image')) {
-            echo 'UUU';
             //自訂檔案名稱
             $imageName = time().'.'.$request->file('image')->extension();
             //把檔案存到公開的資料夾
             $request->file('image')->move(public_path('/images'), $imageName);
-
         }
 
         //儲存至DB
@@ -102,8 +100,19 @@ class MealController extends Controller
      */
     public function edit(Meal $meal)
     {
-        //
+        $category_all=Category::orderBy('id','DESC')->get();//所有類別
+        $categories=Category::where('id','=',$meal->category_id)->get();//目前餐點的類別
+        $data=[
+            'meal'=>$meal,
+            'category_all'=>$category_all,
+            'categories'=>$categories,
+        ];
+        //回傳頁面
+        return view('poster.meals.edit',$data);
     }
+
+
+
 
     /**
      * Update the specified resource in storage.
@@ -112,9 +121,41 @@ class MealController extends Controller
      * @param  \App\Models\Meal  $meal
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMealRequest $request, Meal $meal)
+    public function update(Request $request, Meal $meal)
     {
-        //
+        //確認有檔案的話儲存到資料夾
+        if ($request->hasFile('image')) {
+//            echo 'OKK';
+            //取格硬碟實例
+            $disk=Storage::disk('images');
+            //刪除指定檔案
+            $disk->delete($meal->image);
+
+            //自訂檔案名稱
+            $imageName = time().'.'.$request->file('image')->extension();
+            //把檔案存到公開的資料夾
+            $request->file('image')->move(public_path('/images'), $imageName);
+
+        }else{
+            //如果沒有上傳新檔案抓取原檔案的路徑
+            $imageName=$meal->image;
+//            echo "NOO";
+        }
+
+        //更新至DB
+        $meal->update([
+            'name'=>$request->name,
+            'category_id'=>$request->category_id,
+            'price'=>$request->price,
+            'image'=>$imageName,
+        ]);
+
+        $categories=Category::where('id','=',$meal->category_id)->get();
+        $data=[
+            'meal'=>$meal,
+            'categories'=>$categories,
+        ];
+        return view('poster.meals.show',$data);
     }
 
     /**
@@ -129,7 +170,7 @@ class MealController extends Controller
         $disk=Storage::disk('images');
         //刪除指定檔案
         $disk->delete($meal->image);
-        //刪除meal資料
+        //刪除meals的資料
         Meal::destroy($meal->id);
         return redirect()->route('poster.meals.index');
     }

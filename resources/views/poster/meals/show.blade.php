@@ -36,7 +36,8 @@
         </div>
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-primary btn-sm" type="submit">編輯</button>
+            <a href="{{route('poster.meals.edit',$meal->id)}}" class="btn btn-primary btn-sm">編輯</a>
+            <a href="{{route('poster.meals.index')}}" type="button" class="btn btn-sm btn-secondary">取消</a>
         </div>
 
 
