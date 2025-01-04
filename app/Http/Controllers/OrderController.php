@@ -110,16 +110,10 @@ class OrderController extends Controller
         //
     }
 
-    //若此筆訂單已經結束，將此筆訂單刪除，開始新的訂單
+    
+
     public function destroy(Order $order)
     {
-        //先將和顧客訂單(order)有關聯的訂單明細(orderitem)刪除
-        $order->orderitem()->delete();
-
-        //再將顧客此筆訂單刪除
-        Order::destroy($order->id);
-
-        //轉至顧客訂單初始化路由，開始新的一筆訂單
-        return redirect()->route('orders.orders.init');
+        //
     }
 }
