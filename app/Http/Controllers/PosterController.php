@@ -10,14 +10,20 @@ class PosterController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
      */
+    //平台人員首頁
     public function index()
     {
-        //
+        return view('poster.dashboard.index');
     }
+
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -26,6 +32,9 @@ class PosterController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StorePosterRequest  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(StorePosterRequest $request)
     {
@@ -34,6 +43,9 @@ class PosterController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param  \App\Models\Poster  $poster
+     * @return \Illuminate\Http\Response
      */
     public function show(Poster $poster)
     {
@@ -42,6 +54,9 @@ class PosterController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Poster  $poster
+     * @return \Illuminate\Http\Response
      */
     public function edit(Poster $poster)
     {
@@ -50,6 +65,10 @@ class PosterController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UpdatePosterRequest  $request
+     * @param  \App\Models\Poster  $poster
+     * @return \Illuminate\Http\Response
      */
     public function update(UpdatePosterRequest $request, Poster $poster)
     {
@@ -58,6 +77,9 @@ class PosterController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Poster  $poster
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Poster $poster)
     {
