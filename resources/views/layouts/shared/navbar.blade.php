@@ -17,7 +17,26 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="tbadge bg-light text-dark ">Dashboard</a>
+                    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                        {{ __('登出') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                         <a href="{{route('order.OrderItem.index')}}" class="tbadge bg-light text-dark "> {{ Auth::user()->name }}的訂單</a>
                     @else
                         <a href="{{ route('login') }}" class="badge bg-light text-dark ">Log in</a>

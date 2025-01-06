@@ -46,18 +46,8 @@ class HomeController extends Controller
         }
         else
         {
-
             //顧客登入後role為0，轉至顧客訂單初始化路由
             return  redirect()->route('orders.orders.init');
-
-            //role為0
-            $meals = Meal::orderBy('id','DESC')->get();//取得資料庫中的欄位值，以陣列的方式
-            $categories=Category::orderBy('id','DESC')->get();
-            $data=[
-                'meals'=>$meals,
-                'categories'=>$categories
-            ];
-            return view('index',$data);
 
         }
     }
